@@ -1,0 +1,49 @@
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+  -top: 25px;
+}
+.card {
+  display: flex;
+  flex: 1 1 auto;
+  margin-top: 25px;
+}
+.mint-card {
+  background-color: #ff8000;
+
+}
+.imgSizer {
+  max-width: 33.3%;
+
+}
+.imgSizer2 {
+  max-width:100%;
+
+}
+
+.my-button {
+  width: 10%;
+  height: 60px;
+  border: none;
+  border-radius: 100px;
+  outline: none;
+  background: #b71540;
+  color: white; 
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-mid {
+  width: 20%
+}
+
+.btn-margin {
+  margin-top: 20px;
+  width: 50%;
+}
+.btn-down:hover {
+  background: #eb2f06;
+}
+.btn-up:hover {
+  background: #74a120;
+}

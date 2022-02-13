@@ -1,13 +1,34 @@
+@import url(//db.onlinewebfonts.com/c/3c6b0199ae7b57966132e83c939d77e2?family=Futura+PT+Medium);
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Futura PT Medium", 'Futura PT Medium';
+  background-color: #282B2C;
+  color: black;
+  text-align:center
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: "Futura PT Medium";
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:100);
+
+#loading {
+  display: inline-block;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: rgb(110, 19, 19);
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
 }
