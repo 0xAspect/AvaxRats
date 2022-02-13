@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2a882005.chunk.css",
+    "main.js": "/static/js/main.ebb61b67.chunk.js",
+    "main.js.map": "/static/js/main.ebb61b67.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/css/2.0f184c0a.chunk.css": "/static/css/2.0f184c0a.chunk.css",
+    "static/js/2.a10f3682.chunk.js": "/static/js/2.a10f3682.chunk.js",
+    "static/js/2.a10f3682.chunk.js.map": "/static/js/2.a10f3682.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.c7b213137332b84d9213b5685b879c83.js": "/precache-manifest.c7b213137332b84d9213b5685b879c83.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.0f184c0a.chunk.css.map": "/static/css/2.0f184c0a.chunk.css.map",
+    "static/css/main.2a882005.chunk.css.map": "/static/css/main.2a882005.chunk.css.map",
+    "static/media/avax-logo.svg": "/static/media/avax-logo.4e9df24e.svg",
+    "static/media/cheese.png": "/static/media/cheese.e387c5a6.png",
+    "static/media/discord1.svg": "/static/media/discord1.7594b796.svg",
+    "static/media/github.svg": "/static/media/github.1bb02710.svg",
+    "static/media/logo.png": "/static/media/logo.43caf8cf.png",
+    "static/media/rarity.png": "/static/media/rarity.8eae51be.png",
+    "static/media/rat3.png": "/static/media/rat3.fb70e006.png",
+    "static/media/ratCycle.png": "/static/media/ratCycle.4921a5f2.png",
+    "static/media/snowtrace.svg": "/static/media/snowtrace.ac4030e0.svg",
+    "static/media/tester.png": "/static/media/tester.7bc3c659.png",
+    "static/media/trinket.png": "/static/media/trinket.785a660f.png",
+    "static/media/twitter.svg": "/static/media/twitter.631cd566.svg"
+  }
+}
