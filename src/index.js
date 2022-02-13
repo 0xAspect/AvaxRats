@@ -42,7 +42,7 @@ export default function App() {
   const web3 = new Web3(Web3.givenProvider);
 
   //declare web3 state variables
-  const isLive = false;
+  const isLive = true;
   const [network, setNetwork] = useState("none");
   const [userAddress, setUserAddress] = useState("none");
   const [userConnected, setUserConnected] = useState(false);
@@ -550,6 +550,7 @@ export default function App() {
         trinketBalance={trinketBalance}
         stakedTrinketBalance={stakedTrinketBalance}
         rats={nftBalance.length}
+        isLive={isLive}
       />
       <Routes>
         <Route
@@ -561,6 +562,7 @@ export default function App() {
               mintRat={mintRat}
               nftTotalSupply={nftTotalSupply}
               avaxBalance={avaxBalance}
+              isLive={isLive}
             />
           }
         />
@@ -583,6 +585,7 @@ export default function App() {
               loadTotalUnclaimedTrinketYield={loadTotalUnclaimedTrinketYield}
               loadGatherTime={loadGatherTime}
               nibblesBalance={nibblesBalance}
+              isLive={isLive}
             />
           }
         />
@@ -602,6 +605,7 @@ export default function App() {
               nibblesBalance={nibblesBalance}
               claimNibbles={claimNibbles}
               trinketStakeTime={trinketStakeTime}
+              isLive={isLive}
             />
           }
         >
@@ -617,6 +621,7 @@ export default function App() {
               nftTotalSupply={nftTotalSupply}
               avaxBalance={avaxBalance}
               web3Enabled={web3Enabled}
+              isLive={isLive}
             />
           }
         />

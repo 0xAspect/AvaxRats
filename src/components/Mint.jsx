@@ -68,6 +68,7 @@ function Mint(props) {
 
 <MintCard
   userAddress={props.userAddress}
+  isLive = {props.isLive}
   web3Enabled={props.web3Enabled}
   mintRat={props.mintRat}
   nftTotalSupply={props.nftTotalSupply}
