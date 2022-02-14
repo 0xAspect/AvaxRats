@@ -54,10 +54,10 @@ function Home(props) {
             <p style={{ fontSize: "20px" }}>
               {" "}
               The AVAX Rats are a collection of 10,000 unique, levelable NFTs.
-              RATS are constantly currying around in the sewers beneth the
+              RATS are constantly scurrying around in the sewers beneth the
               Avalanche Blockchain on the hunt for{" "}
               <a style={coinStyle}>TRINKETS</a>, the currency of the SewerVerse.
-              Each RAT starts at life at level 1 but can be fed{" "}
+              Each RAT starts life at level 1 but can be fed{" "}
               <a style={nibStyle}>NIBBLES </a> to level up.
             </p>
             <p style={{ fontSize: "20px" }}>

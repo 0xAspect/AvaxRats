@@ -1,8 +1,8 @@
-@import url(//db.onlinewebfonts.com/c/3c6b0199ae7b57966132e83c939d77e2?family=Futura+PT+Medium);
+@font-face { font-family: fut; font-weight: bold; src: url('futPt.ttf');}
 
 body {
   margin: 0;
-  font-family: "Futura PT Medium", 'Futura PT Medium';
+  font-family: "fut";
   background-color: #282B2C;
   color: black;
   text-align:center

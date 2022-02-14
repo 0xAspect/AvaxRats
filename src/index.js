@@ -31,7 +31,6 @@ import {
   snowTraceAddress,
   snowtraceAddress,
 } from "./assets/addresses.js";
-import Card from "react-bootstrap/Card";
 
 //About Page
 //Add content
@@ -42,7 +41,7 @@ export default function App() {
   const web3 = new Web3(Web3.givenProvider);
 
   //declare web3 state variables
-  const isLive = true;
+  const isLive = false;
   const [network, setNetwork] = useState("none");
   const [userAddress, setUserAddress] = useState("none");
   const [userConnected, setUserConnected] = useState(false);
@@ -505,10 +504,11 @@ export default function App() {
    
     await loadUser().then(
       (response) => {
+        console.log(response);
         if (response != userAddress) {
           setUserAddress(response);
         }
-        loadAVAXBalance(response);
+        // loadAVAXBalance(response);
         if (isLive === true) {
           loadTrinketBalance(response);
           loadNftBalance(response);
@@ -536,7 +536,7 @@ export default function App() {
         loadNFTSupply();
       }
 
-    }, 2000);
+    }, 5000);
   }, [userAddress]);
 
   return (

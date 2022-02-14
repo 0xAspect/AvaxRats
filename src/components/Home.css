@@ -1,7 +1,7 @@
-@import url(//db.onlinewebfonts.com/c/3c6b0199ae7b57966132e83c939d77e2?family=Futura+PT+Medium);
+@font-face { font-family: fut; font-weight: bold; src: url('futPt.ttf');}
 
 .button-54 {
-  font-family: "Futura PT Medium", 'Futura PT Medium';
+  font-family: "fut";
   font-size: 16px;
   letter-spacing: 2px;
   text-decoration: none;
@@ -19,7 +19,7 @@
 }
 
 .button-55 {
-  font-family: "Futura PT Medium", 'Futura PT Medium';  
+  font-family: "fut";  
   font-size: 16px;
   letter-spacing: 2px;
   text-decoration: none;
