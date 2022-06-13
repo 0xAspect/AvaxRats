@@ -17,18 +17,19 @@ import 'reactjs-popup/dist/index.css';
 
 function Mint(props) {
 
-  const [uris, setURIs] = useState(['']);
+  const [imgs, setImgs] = useState(['']);
 
 
   const randomUris = () => {
-    var uris = [];
-    for(var i = 0; i < 6; i++) {
-      var imgURL = imgUri + (Math.floor((Math.random() * 100) + 1)).toString() + '.png';
-      uris.push(imgURL);
+    var img = [];
+    for(var i = 1; i < 7; i++) {
+      const imgSrc = require ("../assets/images/samples/" + i + '.png');
+      img.push(imgSrc);
     }
-    setURIs(uris);
+    setImgs(img);
   }
   const [mintAmount, setMintAmount] = useState(1);
+  console.log(imgs);
 
     const mintRat = () => {
         props.mintRat(mintAmount)
@@ -56,13 +57,13 @@ function Mint(props) {
     
     <div class="container-fluid bg-dark text-light p-7" >
     <div class="container bg-dark p-5">
-      <h1 class="display-4 fw-bold ">Grow your mischief - Mint $RATS</h1>
+      <h1 class="display-4 fw-bold ">Grow your mischief - Mint Nibblers</h1>
 
 
         <div class="card mint-card">
     <div class="card-horizontal " >        
     <div class="card-body"> 
-    <h3 class="card-title">Rat Keeper:</h3> <p>{props.userAddress}</p></div>
+    <h3 class="card-title">Rat King:</h3> <p>{props.userAddress}</p></div>
       </div>
       </div>
 
@@ -76,8 +77,8 @@ function Mint(props) {
 <div class="card ">
     <div class="card-horizontal " >
         <div class="img-square-wrapper">
-          {uris.map(uri=> ( 
-              <img class="imgSizer" src={rat} alt={rat}/>
+          {imgs.map(img=> ( 
+              <img class="imgSizer" src={img} alt={rat}/>
           ))}
         </div>
    

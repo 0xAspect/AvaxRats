@@ -41,19 +41,21 @@ export default function App() {
   const web3 = new Web3(Web3.givenProvider);
 
   //declare web3 state variables
-  const isLive = false;
+  const isLive = true;
+  const farmLive = true;
+
   const [network, setNetwork] = useState("none");
   const [userAddress, setUserAddress] = useState("none");
   const [userConnected, setUserConnected] = useState(false);
   const [avaxBalance, setAvaxBalance] = useState("0");
   const [trinketBalance, setTrinketBalance] = useState("0");
   const [nftBalance, setNftBalance] = useState("");
-  const [uri, setUri] = useState("");
   const [nftTotalSupply, setNftTotalSupply] = useState("* ");
   const [stakedTrinketBalance, setStakedTrinketBalance] = useState("0");
   const [unclaimedNibbles, setUnclaimedNibbles] = useState("0");
   const [nibblesBalance, setNibblesBalance] = useState("0");
   const [trinketStakeTime, setTrinketStakeTime] = useState("0");
+  const [revealMax, setRevealMax] = useState("0");
 
   //declare contract
   const nftFactory = new web3.eth.Contract(NFT.abi, nftFactoryAddress);
@@ -73,12 +75,12 @@ export default function App() {
 
   //Load User account function
   const loadUser = async () => {
-    let accounts = await web3.eth.getAccounts();
-    let account = accounts[0];
-    setUserConnected(true);
-    loadNetwork();
-
-    return account;
+    let currentAccount = '';
+    await web3.eth.requestAccounts((err, accounts) => { if (accounts.length > 0) {currentAccount = accounts[0] }})
+    console.log(currentAccount);
+      setUserConnected(true);
+      loadNetwork();
+    return currentAccount;
   };
 
   //Load Network function
@@ -100,6 +102,7 @@ export default function App() {
     async (usr) => {
       await web3.eth.getBalance(usr).then((balance) => {
         setAvaxBalance(web3.utils.fromWei(balance));
+        console.log(balance);
       });
     },
     [setAvaxBalance]
@@ -125,7 +128,6 @@ export default function App() {
   const loadNftBalance = useCallback(
     async (usr) => {
       let bal = await nftFactory.methods.balanceOf(usr.toString()).call();
-      let uri = await nftFactory.methods.baseURL().call();
       let ids = [];
       for (var i = 0; i < bal; i++) {
         let tokenId = await nftFactory.methods
@@ -134,7 +136,6 @@ export default function App() {
         ids.push(tokenId);
       }
       setNftBalance(ids);
-      setUri(uri);
     },
     [setNftBalance]
   );
@@ -150,6 +151,14 @@ export default function App() {
     return bal;
   });
 
+  const loadRevealMax = useCallback(async (id) => {
+    let x = await nftFactory.methods.maxReveal().call();
+    setRevealMax(x)
+  });
+  const loadRatUri = useCallback(async (id) => {
+    let uri = await nftFactory.methods.tokenURI(id).call();
+    return uri;
+  });
   const loadGatherTime = async (id) => {
     const time = await trinketFarm.methods.gatherTime(id).call();
     return time;
@@ -227,7 +236,7 @@ export default function App() {
   const mintRat = async (nftMintAmount) => {
     let utils = {
       from: userAddress,
-      value: 1000000000000000000 * nftMintAmount,
+      value: 500000000000000000 * nftMintAmount,
     };
     popupHandler("mint", nftMintAmount);
     await nftFactory.methods
@@ -508,14 +517,19 @@ export default function App() {
         if (response != userAddress) {
           setUserAddress(response);
         }
-        // loadAVAXBalance(response);
+        loadAVAXBalance(response);
         if (isLive === true) {
-          loadTrinketBalance(response);
           loadNftBalance(response);
-          loadStakedTrinkets(response);
-          loadNibblesBalance(response);
-          loadUnclaimedNibbles(response);
-          loadStakeTime(response);
+          if (farmLive === true){
+            loadStakedTrinkets(response);
+            loadNibblesBalance(response);
+            loadUnclaimedNibbles(response);
+            loadStakeTime(response);
+            loadTrinketBalance(response);
+          }
+
+
+
         }
 
       },
@@ -534,6 +548,8 @@ export default function App() {
       }
       if (isLive === true){
         loadNFTSupply();
+        loadRevealMax();
+
       }
 
     }, 5000);
@@ -575,7 +591,6 @@ export default function App() {
               isConnected={userConnected}
               web3Enabled={web3Enabled}
               nftBalance={nftBalance}
-              uri={uri}
               loadRatLevel={loadRatLevel}
               levelUpRat={levelUpRat}
               levelUpRatCost={levelUpRatCost}
@@ -585,7 +600,9 @@ export default function App() {
               loadTotalUnclaimedTrinketYield={loadTotalUnclaimedTrinketYield}
               loadGatherTime={loadGatherTime}
               nibblesBalance={nibblesBalance}
+              loadRatUri = {loadRatUri}
               isLive={isLive}
+              revealMax={revealMax}
             />
           }
         />

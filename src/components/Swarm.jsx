@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
 import NFTDisplay from "./NFTDisplay.jsx";
+import NFTPre from "./NFTPre.jsx";
 import './Home.css'
 import trinket from '../assets/images/trinket.png';
 
@@ -30,7 +31,9 @@ function Contact(props) {
   useEffect(() => {
     const interval = setInterval(() => {
       if (props.userAddress != 'none'){
-        showTotalUnclaimedYield()
+        if (props.isLive === true){
+          showTotalUnclaimedYield()
+        }
       }
       },2000);
       }, [props.userAddress])
@@ -38,10 +41,10 @@ function Contact(props) {
 <div>
   <div class="container-fluid bg-light text-dark p-7" >
    <div class="container bg-light p-5" style={{textAlign: 'left'}}>
-     <h1 class="display-4 fw-bold">RATS</h1>
-       <p>Rat Keeper: {props.userAddress}</p>
+     <h1 class="display-4 fw-bold">NIBBLERS</h1>
+       <p>Rat King: {props.userAddress}</p>
        <div>{ids.length != 0 
-       &&   <div>     <p>RATS: {ids.length} <a style={{marginLeft: "25px"}}>NIBBLES: {Math.round((props.nibblesBalance *100) /100).toLocaleString()}</a> </p>  <div>{totalUnclaimedTrinketYield > 0 && <> <p> Your rats have been hard at work and have gathered {totalUnclaimedTrinketYield} TRINKETS <div style ={{textAlign: 'center'}}> <button type="button" class="button-54" style = {{marginLeft: '25px'}} onClick={claimYieldAll}>Collect TRINKETS </button></div> </p></>  } </div> </div> } </div>
+       &&   <div>     <p>Nibblers: {ids.length} <a style={{marginLeft: "25px"}}>NIBBLES: {Math.round((props.nibblesBalance *100) /100).toLocaleString()}</a> </p>  <div>{totalUnclaimedTrinketYield > 0 && <> <p> Your rats have been hard at work and have gathered {totalUnclaimedTrinketYield} TRINKETS <div style ={{textAlign: 'center'}}> <button type="button" class="button-54" style = {{marginLeft: '25px'}} onClick={claimYieldAll}>Collect TRINKETS </button></div> </p></>  } </div> </div> } </div>
 
     </div>
   </div>
@@ -53,9 +56,13 @@ function Contact(props) {
   :  <div> {ids.length == 0 
             ? <><h1>You have no Rats yet!</h1><NavLink to="/mint"><button type="button" class="button-54"> Mint Rats </button></NavLink></>
             : <div className="row">
-            {ids.map(id=> ( 
-              <NFTDisplay rarity='uncommon' id = {id} uri={props.uri} userAddress={props.userAddress} loadRatLevel={props.loadRatLevel} levelUpRat={props.levelUpRat}levelUpRatCost={props.levelUpRatCost}loadRatYield={props.loadRatYield}claimRatYield={props.claimRatYield} loadGatherTime={props.loadGatherTime} nibblesBalance={props.nibblesBalance}></NFTDisplay>
+            <> {props.reveal == false ?   <>{ids.map(id=> (<NFTPre id = {id}></NFTPre> ))}</>
+            : <>{ids.map(id=> ( 
+              <NFTDisplay rarity='uncommon' id = {id}               revealMax={props.revealMax}
+              loadRatUri = {props.loadRatUri} userAddress={props.userAddress} loadRatLevel={props.loadRatLevel} levelUpRat={props.levelUpRat}levelUpRatCost={props.levelUpRatCost}loadRatYield={props.loadRatYield}claimRatYield={props.claimRatYield} loadGatherTime={props.loadGatherTime} nibblesBalance={props.nibblesBalance} reveal = {props.reveal}></NFTDisplay>
              ))}
+             </>}
+             </>
             </div>
           }
             </div>  

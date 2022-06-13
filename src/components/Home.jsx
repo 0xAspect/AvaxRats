@@ -4,7 +4,7 @@ import Faq from "./Faq";
 import image from "../assets/images/rat3.png";
 import imageRatCycle from "../assets/images/ratCycle.png";
 import imageRarity from "../assets/images/rarity.png";
-import list from "../assets/images/tester.png";
+import list from "../assets/images/ratSample.gif";
 import "reactjs-popup/dist/index.css";
 import trinket from "../assets/images/trinket.png";
 
@@ -51,17 +51,18 @@ function Home(props) {
         <div class="row align-items-center my-5 lg-0">
           <div class="col-lg-6">
             <h1 class="font-weight-light">Welcome to the SewerVerse</h1>
+            <h2 >Mint <span style={{color: rarity.Legendary}}>Nibblers</span> Earn <span style={coinStyle}>Trinkets</span></h2>
             <p style={{ fontSize: "20px" }}>
               {" "}
-              The AVAX Rats are a collection of 10,000 unique, levelable NFTs.
-              RATS are constantly scurrying around in the sewers beneth the
+              The AVAX Nibblers are a collection of 10,000 unique, levelable NFTs.
+              Nibblers are constantly scurrying around in the sewers beneath the
               Avalanche Blockchain on the hunt for{" "}
               <a style={coinStyle}>TRINKETS</a>, the currency of the SewerVerse.
               Each RAT starts life at level 1 but can be fed{" "}
               <a style={nibStyle}>NIBBLES </a> to level up.
             </p>
             <p style={{ fontSize: "20px" }}>
-              Each RAT is unique, hand-drawn and is randomly generated from
+              Each Nibblers is unique, hand-drawn and is randomly generated from
               numerous traits and assets. All of them are unique, but some are
               are rarer than others and will have rarer traits. You can check
               the Rarity Ranking and Distribution below for the details!
@@ -72,6 +73,8 @@ function Home(props) {
           </div>
         </div>
         <MintCard
+          isLive = {props.isLive}
+
           userAddress={props.userAddress}
           web3Enabled={props.web3Enabled}
           mintRat={props.mintRat}
@@ -89,11 +92,11 @@ function Home(props) {
           <div class="col-lg-6">
             <h1 class="font-weight-light">The Sewer Game</h1>
             <p style={{ fontSize: "20px" }}>
-              Each RAT is constantly roaming the SewerVerse looking for{" "}
+              Each Nibbler is constantly roaming the SewerVerse looking for{" "}
               <a style={coinStyle}>TRINKETS.</a>
             </p>
             <p style={{ fontSize: "20px" }}>
-              The higher the level the of the RAT the more{" "}
+              The higher the level the of the Nibbler the more{" "}
               <a style={coinStyle}>TRINKETS</a> it will find.
             </p>
             <p style={{ fontSize: "20px" }}>
@@ -112,7 +115,7 @@ function Home(props) {
             <p style={{ fontSize: "20px" }}>
               {" "}
               <a style={nibStyle}>NIBBLES</a> can be{" "}
-              <a> fed to RATS to increase their level! </a>
+              <a> fed to Nibblers to increase their level! </a>
             </p>
           </div>
         </div>
@@ -121,7 +124,7 @@ function Home(props) {
             <h1 class="font-weight-light">Rarity and Distribution</h1>
             <p style={{ fontSize: "20px" }}>
               As well as having a unique combination of traits and attributes,
-              each RAT is assigned a rarity:{" "}
+              each Nibbler is assigned a rarity:{" "}
             </p>
             <ul style={{ fontSize: "20px" }}>
               <li style={{ color: rarity.Common }}>45% Common</li>
@@ -154,25 +157,25 @@ function Home(props) {
             <h1 class="font-weight-light">Fequently Asked Questions </h1>
             <div style={{ fontSize: "20px", marginBottom: "100px" }}>
               <Faq
-                question={"How much does a RAT cost?"}
-                answer={"Each rat costs 1 AVAX."}
+                question={"How much does a Nibbler cost?"}
+                answer={"Each Nibbler costs 1 AVAX."}
               ></Faq>
               <Faq question={"When can I mint?"} answer={"Soon (tm)."}></Faq>
               <Faq
                 question={"Is there a maximum amount I can mint?"}
                 answer={
-                  "20 RATS can be minted per transaction. There is no limit of RATS per wallet."
+                  "20 Nibblers can be minted per transaction. There is no limit of Nibblers per wallet."
                 }
               ></Faq>
               <Faq
                 question={"What are Trinkets?"}
                 answer={
-                  "TRINKETS are the currency of the SewerVerse. RATS gather TRINKETS in proportion to their level."
+                  "TRINKETS are the currency of the SewerVerse. Nibblers gather TRINKETS in proportion to their level."
                 }
               ></Faq>
               <Faq
-                question={"Do I have to stake my Rats to earn Trinkets?"}
-                answer={"No, RATS are constantly earning TRINKETS."}
+                question={"Do I have to stake my Nibblers to earn Trinkets?"}
+                answer={"No, Nibblers are constantly earning TRINKETS."}
               ></Faq>
             </div>
           </div>

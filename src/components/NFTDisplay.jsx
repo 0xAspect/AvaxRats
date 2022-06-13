@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
-import { nftFactoryAddress, nfTradeAddress, uri } from "../assets/addresses.js";
+import { nftFactoryAddress, nfTradeAddress} from "../assets/addresses.js";
 import arrow from "./arrow.css";
 
 export default function NFTDisplay(props) {
@@ -12,34 +12,42 @@ export default function NFTDisplay(props) {
   const [ratlevelCost, setRatLevelCost] = useState(" ");
   const [ratGatherTime, setRatGatherTime] = useState(" ");
   const [showMeta, setShowMeta] = useState(false);
+  const [uri, setUri] = useState("");
 
   const DailyYield = Math.round((ratYield / ratGatherTime) * 60 * 60 * 24);
-  const metadataUrl = uri + props.id + ".json";
-  const nftradeUrl = nfTradeAddress + nftFactoryAddress + "/" + props.id;
 
+  const nftradeUrl = nfTradeAddress + nftFactoryAddress + "/" + props.id;
   //style properties
 
   const [rarity, setRarity] = useState("");
 
+
+  console.log(props.revealMax);
   const fetchData = async () => {
-    const response = await axios.get(metadataUrl);
+    const uri = await props.loadRatUri(props.id);
+    const response = await axios.get(uri);
     setRat(response.data);
-    const rarity = response.data.attributes[0].value;
-    if (rarity == "Common") {
-      setRarity("fffff");
+    console.log(response.data);
+    console.log(props.id);
+    if (props.revealMax > props.id) {
+      const rarity = response.data.attributes[0].value;
+      if (rarity == "Common") {
+        setRarity("fffff");
+      }
+      if (rarity == "Uncommon") {
+        setRarity("#1eff00");
+      }
+      if (rarity == "Rare") {
+        setRarity("#0070dd");
+      }
+      if (rarity == "Epic") {
+        setRarity("#a335ee");
+      }
+      if (rarity == "Legendary") {
+        setRarity("#ff8000");
+      }
     }
-    if (rarity == "Uncommon") {
-      setRarity("#1eff00");
-    }
-    if (rarity == "Rare") {
-      setRarity("#0070dd");
-    }
-    if (rarity == "Epic") {
-      setRarity("#a335ee");
-    }
-    if (rarity == "Legendary") {
-      setRarity("#ff8000");
-    }
+
   };
 
   const handleMeta = async () => {
@@ -72,12 +80,15 @@ export default function NFTDisplay(props) {
   console.log(rarity);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const interval = setInterval(async () => {
       fetchData();
       ratLevel();
       levelUpCost();
-      ratYieldFunc();
-      gatherTime();
+      if (props.farmLive == true){
+        ratYieldFunc();
+        gatherTime();
+      }
+
     }, 2000);
   }, [props.userAddress]);
 
@@ -103,8 +114,9 @@ export default function NFTDisplay(props) {
                 </span>
               </h4>{" "}
               <h5>
+  
                 Level {ratLevelnum}{" "}
-                <a style={{ color: rarity }}>{rat.attributes[0].value}</a>{" "}
+                <a style={{ color: rarity }}>{props.revealMax >= props.id ? rat.attributes[0].value : "Rat"} </a>{" "}
               </h5>{" "}
               <h5>
                 Trinkets gathered: {ratYield} ({DailyYield}/day){" "}
@@ -112,59 +124,98 @@ export default function NFTDisplay(props) {
             </Card.Title>
             <>
               {showMeta && (
+                <>
                 <Table hover varient="dark" size="sm">
                   <tbody>
                     <tr>
-                      <td> {rat.attributes[1].trait_type}</td>
+                      <td> Rarity </td>
                       <td colSpan={2} style={bold}>
                         {" "}
-                        {rat.attributes[1].value}
+                        {props.revealMax >= props.id ? rat.attributes[0].value: "?"}
                       </td>
                     </tr>
                     <tr>
-                      <td> {rat.attributes[2].trait_type}</td>
+                      <td> Background</td>
                       <td colSpan={2} style={bold}>
                         {" "}
-                        {rat.attributes[2].value}
+                        {props.revealMax >= props.id ? rat.attributes[1].value: "?"}
                       </td>
                     </tr>
                     <tr>
-                      <td> {rat.attributes[3].trait_type}</td>
+                      <td> Fur</td>
                       <td colSpan={2} style={bold}>
                         {" "}
-                        {rat.attributes[3].value}
+                        {props.revealMax >= props.id ? rat.attributes[2].value: "?"}
                       </td>
                     </tr>
                     <tr>
-                      <td> {rat.attributes[4].trait_type}</td>
+                      <td> Eyes</td>
                       <td colSpan={2} style={bold}>
                         {" "}
-                        {rat.attributes[4].value}
+                        {props.revealMax >= props.id ? rat.attributes[3].value: "?"}
                       </td>
                     </tr>
                     <tr>
-                      <td> {rat.attributes[5].trait_type}</td>
+                      <td> Whiskers</td>
                       <td colSpan={2} style={bold}>
                         {" "}
-                        {rat.attributes[5].value}
+                        {props.revealMax >= props.id ? rat.attributes[4].value: "?"}
                       </td>
                     </tr>
                     <tr>
-                      <td> {rat.attributes[6].trait_type}</td>
+                      <td> Ears</td>
                       <td colSpan={2} style={bold}>
                         {" "}
-                        {rat.attributes[6].value}
+                        {props.revealMax >= props.id ? rat.attributes[5].value: "?"}
                       </td>
                     </tr>
-
                     <tr>
-                      <td colSpan={2}>
+                      <td> Nose </td>
+                      <td colSpan={2} style={bold}>
                         {" "}
-                        <a href={nftradeUrl}> view on NFTtrade</a>
+                        {props.revealMax >= props.id ? rat.attributes[6].value: "?"}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Tail </td>
+                      <td colSpan={2} style={bold}>
+                        {" "}
+                        {props.revealMax >= props.id ? rat.attributes[7].value: "?"}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Clothes </td>
+                      <td colSpan={2} style={bold}>
+                        {" "}
+                        {props.revealMax >= props.id ? rat.attributes[8].value: "?"}
                       </td>
                     </tr>
                   </tbody>
+                  
                 </Table>
+                 <Table size="sm">
+                 <tbody>
+                     <tr>
+                       <td>Ferocity</td>
+                       <td>Cunning</td>
+                       <td>Agility</td>
+                     </tr>
+                     <tr>
+                       <td>{props.revealMax >= props.id ? rat.attributes[9].value: "?"}
+</td>
+<td>{props.revealMax >= props.id ? rat.attributes[10].value: "?"} </td>
+<td>{props.revealMax >= props.id ? rat.attributes[11].value: "?"} </td>
+
+                     </tr>
+                     <tr>
+                       <td colSpan={3}>
+                         {" "}
+                         <a href={nftradeUrl}> view on NFTtrade</a>
+                       </td>
+                     </tr>
+                     </tbody>
+                 </Table>
+                 </>
               )}
             </>
             <button class="button-54" role="button" onClick={levelUp}>

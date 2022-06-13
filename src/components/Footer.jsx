@@ -24,7 +24,7 @@ var url = {snowtraceAddress} + nftFactoryAddress;
           <div className='text-center'>
               <a href={url} target="_blank" ><img src={snowtrace} style={iconStyle} alt="" /></a>
               <a href='https://www.google.com'target="_blank" ><img src={discord} style={iconStyle} alt="" /></a>
-              <a href='https://www.twitter.com/Avaxrats'target="_blank" ><img src={twitter} style={iconStyle} alt="" /></a>
+              <a href='https://www.twitter.com/AvaxNibblers'target="_blank" ><img src={twitter} style={iconStyle} alt="" /></a>
               <img src={github} style={iconStyle} alt="" />
           </div>
         </div>

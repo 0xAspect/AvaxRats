@@ -42,12 +42,12 @@ function MintCard(props) {
         </div>
         <div class="card-body">
             <h1 class="card-title">Mint Now</h1>
-            <h4 class="card-title"> Cost: <img src={image} width ="25px"></img> 1</h4>
-            <h4> {props.nftTotalSupply}/10,000 Rats minted so far</h4>
+            <h4 class="card-title"> Cost: <img src={image} width ="25px"></img> 0.5</h4>
+            <h4> {props.nftTotalSupply}/200 (Gen-0) Nibblers minted so far</h4>
             <div onClick={handleMintAmountChange} width='100%'> <button value='down' class='button-54 btn-down' >-</button> <button class=' button-54 btn-mid' >{mintAmount}</button> <button class='button-54 btn-up' value='up'>+</button>   </div>
             <div>
               {props.userAddress != 'none' 
-              ? <div>{props.isLive === true ? <button  class="button-54 btn-margin" onClick={mintRat}> <a>Mint! </a> </button> : <button  class="button-54 btn-margin" > <a>Mint! (SOON) </a> </button> }</div>
+              ? <div>{props.isLive === true ? <button  class="button-54 btn-margin" onClick={mintRat}> <a>Mint! </a> </button> : <button  class="button-54 btn-margin" > <a>Mint! </a> </button> }</div>
               : <button  class="button-54 btn-margin" onClick={props.web3Enabled}> <a> PLEASE CONNECT WALLET </a> </button> }
               </div> 
             
